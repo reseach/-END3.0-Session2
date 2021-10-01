@@ -85,17 +85,32 @@ Error at the output node out_o2, E2
 
 **Backward Propogation:
 **
+
+The expected error for out_o1 and out_o2 is t1 and t2 respectively.
+
 Total Error at the Output Node,
+
+Total error wrt w5:
 
 ∂E_Total/∂w5 = ∂(E1 + E2)/∂w5 = ∂E1/∂w5 =  ∂E1/out_o1*∂out_o1/o1*∂o1/∂w5 (By chain rule)
 
+Total error of E1 wrt out_o1:
+
 ∂E1/∂out_o1 = out_o1 - t1
+
+Total error of out_o1 wrt o1:
 
 ∂out_o1/∂o1 =  σ(o1)* (1 - σ(o1)) = out_o1*(1-out_o1)
 
+Total error of o1 wrt w5:
+
 ∂o1/∂w5 = out_h1
 
+Total error, E_total wrt w5:
+
 ∂E_Total/∂w5 = (out_01 - t1) * out_o1*(1-out_o1)*out_h1
+
+Similarly, Total error, E_total wrt w6, w7 and w8:
 
 ∂E_Total/∂w6 = (out_01 - t1) * out_o1*(1-out_o1)*out_h2
 
@@ -115,6 +130,10 @@ Total Error at the Output Node,
 
 ∂E_Total/∂out_h2 = (out_o1 - T1) * out_o1 * (1 - out_01) * w6 + (out_o2 - t2)*out_o2*(1-out_o2)*w8
 
+
+**Total error, E_total wrt w1 to w8:
+**
+
 ∂E_Total/∂w1 = ∂E_Total/∂out_h1*∂out_h1/∂h1*∂h1/w1
 
 ∂E_Total/∂w1 = ∂E_Total/∂out_h1*out_h1*(1-out_h1)*i1
@@ -132,6 +151,10 @@ Total Error at the Output Node,
 ∂E_Total/∂w7 = (out_02 - t2) * out_o2*(1-out_o2)*out_h1
 
 ∂E_Total/∂w8 = (out_02 - t2) * out_o2*(1-out_o2)*out_h2
+
+The weights are then update using the gradient step:
+
+wi = wi - learning_rate * ∂E_Total/∂wi
 
 
 
