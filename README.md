@@ -42,6 +42,7 @@ Network Architecture:
 **
 The forward pass through the neural network is as per the network architecture:
 
+>
 For Node h1,
 
   h1 = i1*w1 + i2*w2
